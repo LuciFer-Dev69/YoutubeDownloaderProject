@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video Hub - Download YouTube videos with ease">
+    <title>Video Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <img src="images/hahah.png" alt="Video Hub Logo" class="logo-icon">
+                Video Hub
+            </h1>
+            <p class="subtitle">Download videos in your preferred quality</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="videoUrl" 
+                        class="url-input" 
+                        placeholder="Paste YouTube video URL here..."
+                        autocomplete="off"
+                    >
+                    <button id="fetchBtn" class="fetch-btn">
+                        <span class="btn-text">Fetch Video</span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </div>
+                <p class="error-message" id="errorMessage"></p>
+            </div>
+
+            <div class="video-preview" id="videoPreview" style="display: none;">
+                <div class="preview-content">
+                    <div class="thumbnail-container">
+                        <img id="videoThumbnail" class="thumbnail" alt="Video thumbnail">
+                        <div class="thumbnail-overlay">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h2 id="videoTitle" class="video-title"></h2>
+                        <div class="video-meta">
+                            <span id="videoDuration" class="meta-item"></span>
+                            <span id="videoChannel" class="meta-item"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-section" id="downloadSection" style="display: none;">
+                <div class="quality-selector">
+                    <label for="qualitySelect" class="quality-label">Select Quality:</label>
+                    <select id="qualitySelect" class="quality-select">
+                        <option value="">Choose quality...</option>
+                        <optgroup label="Video Quality">
+                            <option value="2160p">4K (2160p) - Ultra HD</option>
+                            <option value="1440p">1440p - QHD</option>
+                            <option value="1080p">1080p - Full HD</option>
+                            <option value="720p">720p - HD</option>
+                            <option value="480p">480p - SD</option>
+                            <option value="360p">360p</option>
+                            <option value="240p">240p</option>
+                            <option value="144p">144p</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3 Audio (Best Quality)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button id="downloadBtn" class="download-btn" disabled>
+                    <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Download Video
+                </button>
+                <p class="info-message" id="infoMessage"></p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Video Hub - Download YouTube videos with ease. Powered by our own API.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
