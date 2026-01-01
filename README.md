@@ -1,64 +1,120 @@
-# YouTube Video Downloader
+# 🎥 YouTube Video Downloader
 
-A full-stack YouTube video downloader application with a modern frontend and Node.js backend API.
+A full-stack YouTube video downloader application with a modern, dark-themed UI and a powerful Node.js backend. Download YouTube videos in multiple qualities (144p to 4K) or extract audio as MP3.
 
-## Features
+![Video Hub](images/hahah.png)
 
-- 🎥 Download YouTube videos in multiple qualities (144p to 4K)
-- 🎵 Download audio as MP3
-- 📱 Responsive, modern UI
-- ⚡ Fast and reliable downloads
-- 🔒 Secure API endpoints
-- 📊 Real-time video information display
+## ✨ Features
 
-## Architecture
+- 🎬 **Multiple Quality Options**: Download videos from 144p to 4K (2160p)
+- 🎵 **Audio Extraction**: Download audio as MP3 format
+- 🎨 **Modern UI**: Clean, dark-themed interface with smooth animations
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- ⚡ **Fast Downloads**: Direct streaming from YouTube servers
+- 🔄 **Real-time Preview**: See video information before downloading
+- 🛡️ **Error Handling**: Graceful fallback to alternative download services
 
-- **Frontend**: Pure HTML/CSS/JavaScript
-- **Backend**: Node.js + Express + ytdl-core
-- **API**: RESTful endpoints for video info and downloads
-
-## Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+Before you begin, ensure you have the following installed:
+- **Node.js** (v14.0.0 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- **Git** (optional, for cloning) - [Download here](https://git-scm.com/)
 
-### Setup
+### Installation
 
-1. Clone or download this repository
+#### Option 1: Clone with Git
 
-2. Install dependencies:
 ```bash
+# Clone the repository
+git clone https://github.com/LuciFer-Dev69/YoutubeDownloaderProject.git
+
+# Navigate to the project directory
+cd YoutubeDownloaderProject
+
+# Install dependencies
 npm install
-```
 
-3. Start the server:
-```bash
+# Start the server
 npm start
 ```
 
-For development with auto-reload:
+#### Option 2: Download ZIP
+
+1. Click the green **"Code"** button on GitHub
+2. Select **"Download ZIP"**
+3. Extract the ZIP file to your desired location
+4. Open terminal/command prompt in the extracted folder
+5. Run the following commands:
+
 ```bash
-npm run dev
+# Install dependencies
+npm install
+
+# Start the server
+npm start
 ```
 
-4. Open your browser and navigate to:
+### 🎯 Usage
+
+1. **Start the server** (if not already running):
+   ```bash
+   npm start
+   ```
+
+2. **Open your browser** and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+3. **Download a video**:
+   - Paste a YouTube video URL into the input field
+   - Click **"Fetch Video"** to load video information
+   - Select your desired quality from the dropdown
+   - Click **"Download Video"** to start the download
+   - Check your browser's Downloads folder for the file
+
+## 📁 Project Structure
+
 ```
-http://localhost:3000
+YoutubeDownloaderProject/
+├── images/              # Logo and assets
+│   └── hahah.png       # Application logo
+├── index.html          # Frontend HTML
+├── script.js           # Frontend JavaScript logic
+├── styles.css          # Frontend styling
+├── server.js           # Backend API server
+├── package.json        # Node.js dependencies
+├── .gitignore          # Git ignore rules
+└── README.md           # This file
 ```
 
-## API Endpoints
+## 🛠️ Technology Stack
 
-### GET /api/info
-Get video information and available formats.
+### Frontend
+- **HTML5** - Structure
+- **CSS3** - Styling with modern dark theme
+- **JavaScript (ES6+)** - Client-side logic
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **@distube/ytdl-core** - YouTube download library (actively maintained)
+- **CORS** - Cross-origin resource sharing
+
+## 🔧 API Endpoints
+
+### GET `/api/info`
+Fetch video information and available formats.
 
 **Query Parameters:**
 - `url` (required): YouTube video URL
 
 **Example:**
 ```
-GET /api/info?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ
+GET http://localhost:3000/api/info?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
 **Response:**
@@ -71,29 +127,24 @@ GET /api/info?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ
     "duration": "212",
     "channel": "Channel Name",
     "thumbnail": "https://...",
-    "formats": [...],
-    "availableQualities": ["2160p", "1080p", "720p", "mp3"]
+    "availableQualities": ["1080p", "720p", "480p", "360p", "mp3"]
   }
 }
 ```
 
-### GET /api/download
+### GET `/api/download`
 Download video or audio.
 
 **Query Parameters:**
 - `url` (required): YouTube video URL
 - `quality` (optional): Quality selection (2160p, 1440p, 1080p, 720p, 480p, 360p, 240p, 144p, mp3)
-- `itag` (optional): Specific format itag
 
 **Example:**
 ```
-GET /api/download?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ&quality=1080p
+GET http://localhost:3000/api/download?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ&quality=720p
 ```
 
-**Response:**
-Streams the video/audio file directly to the browser.
-
-### GET /api/health
+### GET `/api/health`
 Health check endpoint.
 
 **Response:**
@@ -101,96 +152,106 @@ Health check endpoint.
 {
   "success": true,
   "message": "YouTube Downloader API is running",
-  "timestamp": "2024-01-01T00:00:00.000Z"
+  "timestamp": "2026-01-01T00:00:00.000Z"
 }
 ```
 
-## Project Structure
-
-```
-youtube-downloader/
-├── server.js          # Backend API server
-├── package.json       # Node.js dependencies
-├── index.html         # Frontend HTML
-├── styles.css         # Frontend styles
-├── script.js          # Frontend JavaScript
-├── .gitignore         # Git ignore file
-└── README.md          # This file
-```
-
-## Usage
-
-1. Enter a YouTube video URL in the input field
-2. Click "Fetch Video" to get video information
-3. Select your desired quality from the dropdown
-4. Click "Download Video" to start the download
-
-## Development
+## 💻 Development
 
 ### Running in Development Mode
+
+For automatic server restart on file changes:
 
 ```bash
 npm run dev
 ```
 
-This uses `nodemon` to automatically restart the server when files change.
+This uses `nodemon` to watch for file changes and automatically restart the server.
 
 ### Environment Variables
 
-You can set the following environment variables:
+You can customize the server port by setting the `PORT` environment variable:
 
-- `PORT`: Server port (default: 3000)
+**Windows (PowerShell):**
+```powershell
+$env:PORT=8080; npm start
+```
 
-Example:
+**Windows (CMD):**
+```cmd
+set PORT=8080 && npm start
+```
+
+**macOS/Linux:**
 ```bash
 PORT=8080 npm start
 ```
 
-## Deployment
-
-### Local Deployment
-
-1. Install dependencies: `npm install`
-2. Start server: `npm start`
-3. Access at `http://localhost:3000`
-
-### Cloud Deployment
-
-This application can be deployed to:
-- Heroku
-- Railway
-- Render
-- DigitalOcean
-- AWS
-- Any Node.js hosting platform
-
-Make sure to:
-1. Set the `PORT` environment variable if required by your hosting platform
-2. Ensure Node.js 14+ is available
-3. Install dependencies during deployment
-
-## Troubleshooting
-
-### Download fails
-- Check if the video URL is valid
-- Ensure the video is not age-restricted or region-locked
-- Try a different quality option
+## 🐛 Troubleshooting
 
 ### Server won't start
-- Verify Node.js version (v14+)
-- Run `npm install` to ensure all dependencies are installed
-- Check if port 3000 is available
+- **Check Node.js version**: Run `node --version` (should be v14+)
+- **Reinstall dependencies**: Delete `node_modules` folder and run `npm install`
+- **Port already in use**: Change the port using environment variable (see above)
+
+### Download fails
+- **Invalid URL**: Ensure you're using a valid YouTube video URL
+- **Video unavailable**: Some videos may be age-restricted, region-locked, or private
+- **Quality not available**: Try a different quality option
+- **Network issues**: Check your internet connection
+
+### "Module not found" error
+```bash
+# Delete node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Reinstall dependencies
+npm install
+```
 
 ### CORS errors
-- Ensure the frontend and backend are on the same origin, or
-- Configure CORS settings in `server.js` if using separate origins
+- Ensure you're accessing the app through `http://localhost:3000`
+- Don't use `file://` protocol - always use the server
 
-## License
+## 📝 Notes
 
-MIT License - feel free to use this project for personal or commercial purposes.
+### Quality Availability
+Not all videos have all quality options available. The application will only show qualities that YouTube provides for each specific video. Older videos may only have lower resolutions (240p, 360p).
 
-## Disclaimer
+### Legal Disclaimer
+This tool is for **educational purposes only**. Please respect:
+- YouTube's Terms of Service
+- Copyright laws
+- Content creators' rights
 
-This tool is for educational purposes. Please respect YouTube's Terms of Service and copyright laws. Only download videos you have permission to download.
+Only download videos you have permission to download or that are in the public domain.
 
-# YoutubeDownloaderProject
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+
+## 📄 License
+
+MIT License - feel free to use this project for personal or educational purposes.
+
+## 🙏 Acknowledgments
+
+- **@distube/ytdl-core** - For the actively maintained YouTube download library
+- **Express.js** - For the excellent web framework
+- **YouTube** - For providing the platform
+
+## 📞 Support
+
+If you encounter any issues:
+1. Check the [Troubleshooting](#-troubleshooting) section
+2. Review existing GitHub issues
+3. Create a new issue with detailed information
+
+---
+
+**Made with ❤️ for educational purposes**
+
+**Repository:** [https://github.com/LuciFer-Dev69/YoutubeDownloaderProject](https://github.com/LuciFer-Dev69/YoutubeDownloaderProject)
