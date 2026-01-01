@@ -76,3 +76,6 @@ coverage/
 # Gemini artifacts (your AI assistant files)
 .gemini/
 
+# YouTube player cache files (temporary, auto-generated)
+*-player-script.js
+
